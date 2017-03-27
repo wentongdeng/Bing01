@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd" xmlns:tx="http://www.springframework.org/schema/tx">
+
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:oracle">
+		</property>
+		<property name="username" value="wentong"></property>
+		<property name="password" value="125689"></property>
+		<property name="driverClassName">  
+            <value>oracle.jdbc.driver.OracleDriver</value>  
+        </property> 
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.Oracle9Dialect
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>cn/it/bing/modle/Users.hbm.xml</value>
+				<value>cn/it/bing/modle/Doctors.hbm.xml</value></list>
+		</property></bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" /><bean
+		id="UsersDAO" class="cn.it.bing.modle.UsersDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+</bean>
+	<bean id="DoctorsDAO" class="cn.it.bing.modle.DoctorsDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="loginAction" class="cn.it.bing.action.LoginAction" >
+		<property name="doctorDao" ref="DoctorsDAO"></property>
+		<property name="userDao" ref="UsersDAO"></property>
+	</bean>
+	<bean id="searchAction" class="cn.it.bing.action.SearchAction">
+		<property name="doctorDao" ref="DoctorsDAO"></property>
+		<property name="userDao" ref="UsersDAO"></property>
+	</bean>
+	<bean id="talkAction" class="cn.it.bing.action.TalkAction"> 
+		<property name="doctorDao" ref="DoctorsDAO"></property>
+	</bean>
+	<bean id="updataAction" class="cn.it.bing.action.UpdataAction">
+		<property name="doctorDao" ref="DoctorsDAO"></property>
+		<property name="userDao" ref="UsersDAO"></property>
+	</bean>
+	<bean id="registerAction" class="cn.it.bing.action.RegisterAction">
+		<property name="doctorDao" ref="DoctorsDAO"></property>
+		<property name="userDao" ref="UsersDAO"></property>
+	</bean>
+	</beans>

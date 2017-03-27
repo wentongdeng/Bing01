@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="login" extends="struts-default">
+		<action name="userlogin" class="loginAction" method="Userlogin">
+			<result name="userls">/index2.jsp</result>
+			<result name="userl">/login.jsp</result>
+		</action>
+		<action name="doctorlogin" class="loginAction" method="Doctorlogin">
+			<result name="doctorls">/person_doctor.jsp</result>
+			<result name="doctorl">/login.jsp</result>
+		</action>
+		<action name="tologin" class="loginAction" method="Tologin">
+			<result name="login">/login.jsp</result>
+		</action>
+	</package>
+	<package name="search" extends="struts-default">
+		<action name="searchdoctor" class="searchAction" method="SearchDoctor">
+			<result name="sdpage">/demo.jsp</result>
+		</action>
+		<action name="searchuser" class="searchAction" method="SearchUser">
+			<result name="supage">/demo2.jsp</result>
+		</action>
+	</package>
+	<package name="talk" extends="struts-default">
+		<action name="talkAction" class="talkAction" method="TalkU">
+			<result name="talk">/talk.jsp</result>
+		</action>
+		<action name="turnAction" class="talkAction" method="turn">
+			<result name="turn">/person_doctor2.jsp</result>
+		</action>
+	</package>
+	<package name="updata" extends="struts-default">
+		<action name="pupdataAction" class="updataAction" method="pupdata">
+			<result name="pupdata">/updata.jsp</result>
+		</action>
+		<action name="updataAction" class="updataAction" method="updata">
+			<result name="updata" type="redirectAction">listAction</result>
+		</action>
+		<action name="listAction" class="updataAction" method="list">
+			<result name="list">/person_doctor.jsp</result>
+		</action>
+	</package>
+	<package name="register" extends="struts-default">
+		<action name="userrgAction" class="registerAction" method="userRegister">
+			<result name="register">/register.jsp</result>
+			<result name="tologin" type="redirectAction">tologin</result>
+		</action>
+		<action name="doctorrgAction" class="registerAction" method="doctorRegister">
+			<result name="register">/register2.jsp</result>
+			<result name="tologin">/login2.jsp</result>
+		</action>
+	</package>
+	
+</struts>    

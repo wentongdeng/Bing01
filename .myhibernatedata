@@ -1,0 +1,20 @@
+#MyEclipse Hibernate Properties
+#Sat Dec 24 11:46:17 CST 2016
+genBasicCompId=false
+sessionFactoryName=cn.it.bing.utils.HibernateSessionFactory
+profile=
+daoSFId=sessionFactory
+jndiPath=
+detectM2M=false
+reStrategyClass=
+detectO2O=false
+springDaoFile=src/applicationContext.xml
+useJavaTypes=true
+keyGenerator=
+genVersionTag=false
+sessionFactoryId=sessionFactory
+basePersistenceClass=
+genAnnotations=false
+reSettingsFile=
+configFile=/Bing01/src/applicationContext.xml
+createConfigFile=true
