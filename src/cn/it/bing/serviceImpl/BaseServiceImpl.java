@@ -13,32 +13,27 @@ import org.springframework.stereotype.Service;
 import cn.it.bing.service.BaseService;
 
 
-/**
- * @Description TODO£¨¹«¹²Ä£¿éµÄ³éÈ¡£©
- * @author Ni Shengwu
- *
- */
 @SuppressWarnings("unchecked")
 @Service("baseService ")
 @Lazy(true)
 public class BaseServiceImpl<T> implements BaseService<T> {
 
-	private Class clazz; //clazzÖÐ´æ´¢ÁËµ±Ç°²Ù×÷µÄÀàÐÍ£¬¼´·ºÐÍT
+	private Class clazz; //clazzï¿½Ð´æ´¢ï¿½Ëµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½T
 	
-	@Resource //·ÅÔÚÊôÐÔÉÏÃæ£¬¾Í²»»áµ÷ÓÃset·½·¨£¬Ê¹ÓÃ·´Éä×¢½øÀ´£¬ËùÒÔ¿ÉÒÔ°Ñset·½·¨¸ÉµôÁË
+	@Resource //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ£¬ï¿½Í²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½setï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã·ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½ï¿½Ô°ï¿½setï¿½ï¿½ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½
 	private SessionFactory sessionFactory;
 	
 	public BaseServiceImpl() {
-		System.out.println("this´ú±íµÄÊÇµ±Ç°µ÷ÓÃ¹¹Ôì·½·¨µÄ¶ÔÏó" + this);
-		System.out.println("»ñÈ¡µ±Ç°this¶ÔÏóµÄ¸¸ÀàÐÅÏ¢" + this.getClass().getSuperclass());
-		System.out.println("»ñÈ¡µ±Ç°this¶ÔÏóµÄ¸¸ÀàÐÅÏ¢(°üÀ¨·ºÐÍÐÅÏ¢)" + this.getClass().getGenericSuperclass());
-		//ÄÃµ½·ºÐÍµÄ²ÎÊýÀàÐÍ
+		System.out.println("thisï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½Ç°ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ì·½ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½" + this);
+		System.out.println("ï¿½ï¿½È¡ï¿½ï¿½Ç°thisï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢" + this.getClass().getSuperclass());
+		System.out.println("ï¿½ï¿½È¡ï¿½ï¿½Ç°thisï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢)" + this.getClass().getGenericSuperclass());
+		//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ÍµÄ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();
 		clazz = (Class)type.getActualTypeArguments()[0];
 	}
 	
 	protected Session getSession() {
-		//´Óµ±Ç°Ïß³Ì»ñÈ¡session£¬Èç¹ûÃ»ÓÐÔò´´½¨Ò»¸öÐÂµÄsession
+		//ï¿½Óµï¿½Ç°ï¿½ß³Ì»ï¿½È¡sessionï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ò´´½ï¿½Ò»ï¿½ï¿½ï¿½Âµï¿½session
 		return sessionFactory.getCurrentSession();
 	}
 	
